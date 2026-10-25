@@ -1,0 +1,26 @@
+{
+  "dataset_split": "test.csv (378 items, stratified, deduplicated)",
+  "metrics": {
+    "aml_svm": {
+      "accuracy": 0.7328042328042328,
+      "macro_f1": 0.7198755360347865,
+      "ece": 0.05896448094050647
+    },
+    "aml_rf": {
+      "accuracy": 0.7486772486772487,
+      "macro_f1": 0.7404510146171974,
+      "ece": 0.31680503079227423
+    },
+    "dl_mobilenetv2": {
+      "accuracy": 0.843915343915344,
+      "macro_f1": 0.8267773455420023,
+      "ece": 0.10384982004367482
+    }
+  },
+  "abstain_tau_0_60": {
+    "svm_abstain_percent": 38.35978835978836,
+    "dl_abstain_percent": 26.455026455026452,
+    "svm_retained_accuracy": 0.8927038626609443,
+    "dl_retained_accuracy": 0.9460431654676259
+  }
+}

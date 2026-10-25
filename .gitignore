@@ -1,0 +1,25 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment & IDE
+.env
+.venv/
+env/
+venv/
+.DS_Store
+.vscode/
+.idea/
+
+# Large Raw Datasets (avoids GitHub file size limit)
+data/
+trashnet/
+*.zip
+*.tar.gz
+*.npz
+
+# Temporary files
+data/.temp_infer.jpg
+.temp_infer.jpg

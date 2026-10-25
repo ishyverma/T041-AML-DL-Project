@@ -1,0 +1,112 @@
+{
+  "svm": {
+    "val_accuracy": 0.7037037037037037,
+    "val_macro_f1": 0.6917817824799634,
+    "classification_report": {
+      "cardboard": {
+        "precision": 0.8571428571428571,
+        "recall": 0.7,
+        "f1-score": 0.7706422018348624,
+        "support": 60.0
+      },
+      "glass": {
+        "precision": 0.550561797752809,
+        "recall": 0.6533333333333333,
+        "f1-score": 0.5975609756097561,
+        "support": 75.0
+      },
+      "metal": {
+        "precision": 0.76,
+        "recall": 0.6129032258064516,
+        "f1-score": 0.6785714285714286,
+        "support": 62.0
+      },
+      "paper": {
+        "precision": 0.7572815533980582,
+        "recall": 0.8863636363636364,
+        "f1-score": 0.8167539267015707,
+        "support": 88.0
+      },
+      "plastic": {
+        "precision": 0.6447368421052632,
+        "recall": 0.6805555555555556,
+        "f1-score": 0.6621621621621622,
+        "support": 72.0
+      },
+      "trash": {
+        "precision": 0.9090909090909091,
+        "recall": 0.47619047619047616,
+        "f1-score": 0.625,
+        "support": 21.0
+      },
+      "accuracy": 0.7037037037037037,
+      "macro avg": {
+        "precision": 0.7464689932483162,
+        "recall": 0.6682243712082422,
+        "f1-score": 0.6917817824799634,
+        "support": 378.0
+      },
+      "weighted avg": {
+        "precision": 0.719559377464416,
+        "recall": 0.7037037037037037,
+        "f1-score": 0.7031800398880051,
+        "support": 378.0
+      }
+    }
+  },
+  "random_forest": {
+    "val_accuracy": 0.7275132275132276,
+    "val_macro_f1": 0.6970309324904042,
+    "classification_report": {
+      "cardboard": {
+        "precision": 0.9111111111111111,
+        "recall": 0.6833333333333333,
+        "f1-score": 0.780952380952381,
+        "support": 60.0
+      },
+      "glass": {
+        "precision": 0.5979381443298969,
+        "recall": 0.7733333333333333,
+        "f1-score": 0.6744186046511628,
+        "support": 75.0
+      },
+      "metal": {
+        "precision": 0.7804878048780488,
+        "recall": 0.5161290322580645,
+        "f1-score": 0.6213592233009708,
+        "support": 62.0
+      },
+      "paper": {
+        "precision": 0.6864406779661016,
+        "recall": 0.9204545454545454,
+        "f1-score": 0.7864077669902912,
+        "support": 88.0
+      },
+      "plastic": {
+        "precision": 0.8088235294117647,
+        "recall": 0.7638888888888888,
+        "f1-score": 0.7857142857142857,
+        "support": 72.0
+      },
+      "trash": {
+        "precision": 0.8888888888888888,
+        "recall": 0.38095238095238093,
+        "f1-score": 0.5333333333333333,
+        "support": 21.0
+      },
+      "accuracy": 0.7275132275132276,
+      "macro avg": {
+        "precision": 0.7789483594309686,
+        "recall": 0.6730152523700911,
+        "f1-score": 0.6970309324904042,
+        "support": 378.0
+      },
+      "weighted avg": {
+        "precision": 0.7545264863470335,
+        "recall": 0.7275132275132276,
+        "f1-score": 0.7220585241196149,
+        "support": 378.0
+      }
+    }
+  }
+}

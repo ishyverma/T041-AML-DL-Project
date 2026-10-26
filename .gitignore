@@ -20,6 +20,9 @@ trashnet/
 *.tar.gz
 *.npz
 
-# Temporary files
+# Temporary files & Local Notes
 data/.temp_infer.jpg
 .temp_infer.jpg
+prep.md
+prep_Aml.md
+work_di.md

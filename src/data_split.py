@@ -86,19 +86,19 @@ def run_split():
 
     exact_dups = df[df.duplicated(subset=["md5"], keep=False)]
     if len(exact_dups) > 0:
-        print(f"⚠️ Found {len(exact_dups)} exact duplicate entries! Deduplicating...")
+        print(f"Found {len(exact_dups)} exact duplicate entries! Deduplicating...")
         df = df.drop_duplicates(subset=["md5"], keep="first").reset_index(drop=True)
     else:
-        print("✅ Zero exact MD5 duplicate files detected.")
+        print("Zero exact MD5 duplicate files detected.")
 
     near_dups = df[df.duplicated(subset=["dhash"], keep=False)]
     if len(near_dups) > 0:
-        print(f"⚠️ Found {len(near_dups)} near-identical perceptual duplicate images.")
+        print(f"Found {len(near_dups)} near-identical perceptual duplicate images.")
         # We retain first instance to prevent train/test leakage
         df = df.drop_duplicates(subset=["dhash"], keep="first").reset_index(drop=True)
         print(f"Cleaned dataset count: {len(df)} unique images.")
     else:
-        print("✅ Zero perceptual duplicate images detected.")
+        print("Zero perceptual duplicate images detected.")
 
     # 3. Stratified 70% Train, 15% Val, 15% Test Split
     print("\nGenerating Stratified 70/15/15 Split (random_state=42)...")
@@ -134,7 +134,7 @@ def run_split():
     print("-" * 60)
     print(f"{'TOTAL':<12} | {len(train_df):<12} | {len(val_df):<12} | {len(test_df):<12} | {len(df)}")
     print("=" * 60)
-    print(f"✅ Split manifests written to: {SPLITS_DIR.resolve()}\n")
+    print(f"Split manifests written to: {SPLITS_DIR.resolve()}\n")
 
 if __name__ == "__main__":
     run_split()

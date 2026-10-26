@@ -1,0 +1,5 @@
+model,target,accuracy,macro_f1
+MobileNetV2 (Transfer Learning),Material Class (6),0.843915343915344,0.8267773455420023
+Random Forest (Manual Descriptors),Material Class (6),0.7486772486772487,0.7404510146171974
+SVM RBF (Manual Descriptors),Material Class (6),0.7328042328042328,0.7198755360347865
+Zero-Rule (Majority Class Baseline),Material Class (6),0.23544973544973544,0.05

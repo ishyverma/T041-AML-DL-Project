@@ -1,0 +1,19 @@
+Model,Class,Precision,Recall,F1_Score,Support
+SVM,cardboard,72.13,72.13,0.7213,61
+SVM,glass,75.0,72.0,0.7347,75
+SVM,metal,66.67,75.41,0.7077,61
+SVM,paper,81.32,83.15,0.8222,89
+SVM,plastic,68.12,65.28,0.6667,72
+SVM,trash,75.0,60.0,0.6667,20
+Random Forest,cardboard,85.19,75.41,0.8,61
+Random Forest,glass,68.67,76.0,0.7215,75
+Random Forest,metal,79.17,62.3,0.6972,61
+Random Forest,paper,74.77,93.26,0.83,89
+Random Forest,plastic,68.12,65.28,0.6667,72
+Random Forest,trash,92.31,60.0,0.7273,20
+MobileNetV2,cardboard,90.0,88.52,0.8926,61
+MobileNetV2,glass,84.51,80.0,0.8219,75
+MobileNetV2,metal,85.07,93.44,0.8906,61
+MobileNetV2,paper,85.23,84.27,0.8475,89
+MobileNetV2,plastic,83.1,81.94,0.8252,72
+MobileNetV2,trash,66.67,70.0,0.6829,20

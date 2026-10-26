@@ -52,7 +52,8 @@ def extract_single_image_features(img_path: Path) -> np.ndarray:
     )  # Length: (128/16 - 1) * (128/16 - 1) * (2*2) * 8 = 7 * 7 * 4 * 8 = 1568
 
     # 3. LBP (Local Binary Patterns) for surface texture
-    lbp = local_binary_pattern(img_gray, P=LBP_POINTS, R=LBP_RADIUS, method="uniform")
+    img_gray_uint8 = (img_gray * 255).astype(np.uint8)
+    lbp = local_binary_pattern(img_gray_uint8, P=LBP_POINTS, R=LBP_RADIUS, method="uniform")
     n_bins = LBP_POINTS + 2
     lbp_hist, _ = np.histogram(lbp.ravel(), bins=n_bins, range=(0, n_bins), density=True)  # Length: 18
 
@@ -88,14 +89,14 @@ def extract_and_cache_features():
         cached_data[f"y_{split_name}"] = np.array(labels_list)
 
     feature_dim = cached_data["X_train"].shape[1]
-    print(f"\n✅ Total feature vector dimension: {feature_dim}")
+    print(f"\nTotal feature vector dimension: {feature_dim}")
     print(f"   • Color Histogram (HSV): {COLOR_BINS * 3} dims")
     print(f"   • HOG shape features:    {1568} dims")
     print(f"   • LBP texture features:  {LBP_POINTS + 2} dims")
 
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(CACHE_PATH, **cached_data)
-    print(f"✅ Features cached to: {CACHE_PATH.resolve()} ({CACHE_PATH.stat().st_size / 1e6:.2f} MB)")
+    print(f"Features cached to: {CACHE_PATH.resolve()} ({CACHE_PATH.stat().st_size / 1e6:.2f} MB)")
 
 
 if __name__ == "__main__":

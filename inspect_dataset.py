@@ -31,13 +31,13 @@ def load_from_local_zip(zip_path: Path, extract_to: Path):
         raise FileNotFoundError(f"Local zip not found at {zip_path}")
     
     if not extract_to.exists() or len(list(extract_to.glob("*/*.jpg"))) == 0:
-        print(f"📦 Extracting local dataset from: {zip_path.name} -> {extract_to}...")
+        print(f"Extracting local dataset from: {zip_path.name} -> {extract_to}...")
         extract_to.parent.mkdir(parents=True, exist_ok=True)
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(extract_to.parent)
-        print("✅ Extraction complete!\n")
+        print("Extraction complete!\n")
     else:
-        print(f"✅ Dataset already extracted at: {extract_to}\n")
+        print(f"Dataset already extracted at: {extract_to}\n")
 
     # Discover images per class
     class_folders = sorted([d for d in extract_to.iterdir() if d.is_dir() and not d.name.startswith(".")])
@@ -54,11 +54,11 @@ def load_from_huggingface():
     try:
         from datasets import load_dataset
     except ImportError:
-        print("⚠️ Hugging Face 'datasets' library is not installed.")
+        print("Notice: Hugging Face 'datasets' library is not installed.")
         print("   To use HF directly, run: pip install datasets\n")
         return None
 
-    print("🌐 Downloading/loading dataset from Hugging Face ('garythung/trashnet')...")
+    print("Downloading/loading dataset from Hugging Face ('garythung/trashnet')...")
     ds = load_dataset("garythung/trashnet")
     return ds
 
@@ -68,7 +68,7 @@ def inspect_local_data(data_by_class):
     total_images = sum(len(imgs) for imgs in data_by_class.values())
     
     print("=" * 65)
-    print(" 📊 TRASHNET DATASET OVERVIEW & CLASS DISTRIBUTION")
+    print(" TRASHNET DATASET OVERVIEW & CLASS DISTRIBUTION")
     print("=" * 65)
     print(f"{'Class Name':<15} | {'Count':<8} | {'Percentage':<12} | {'Sample Resolution'}")
     print("-" * 65)
@@ -129,7 +129,7 @@ def create_sample_montage(sample_images, output_path: Path):
         plt.tight_layout()
         plt.savefig(output_path, dpi=150)
         plt.close()
-        print(f"🖼️  Sample montage saved to: {output_path}")
+        print(f"Sample montage saved to: {output_path}")
     except Exception as e:
         print(f"Notice: Could not save montage via matplotlib ({e}).")
 
@@ -150,7 +150,7 @@ def main():
             print(f"Successfully loaded from Hugging Face:")
             print(hf_ds)
 
-    print("\n💡 Recommendation on 'Should I download via Hugging Face load_dataset?'")
+    print("\nRecommendation on 'Should I download via Hugging Face load_dataset?'")
     print("----------------------------------------------------------------------")
     print("• You ALREADY have the full dataset locally inside 'trashnet/data/dataset-resized.zip'!")
     print("• Extracting it takes ~1 second and uses 0 internet bandwidth.")

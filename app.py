@@ -101,16 +101,16 @@ def predict_waste(image_pil):
 
     # --- Low Confidence Abstain Analysis ---
     if dl_max_conf < ABSTAIN_THRESHOLD:
-        dl_status = f"⚠️ ABSTAIN (Low Confidence: {dl_max_conf*100:.1f}%)"
+        dl_status = f"ABSTAIN (Low Confidence: {dl_max_conf*100:.1f}%)"
         abstain_notice = (
-            f"### 🛑 Uncertainty Alert: Recommendation Abstained\n"
+            f"### Uncertainty Alert: Recommendation Abstained\n"
             f"The transfer learning model is uncertain about this item (Top confidence is **{dl_max_conf*100:.1f}%**, below the **{ABSTAIN_THRESHOLD*100:.0f}% safety threshold**).\n\n"
             f"**Action:** To avoid batch contamination, **do not dispose in a single-stream recycling bin** without verifying municipal guidelines."
         )
     else:
-        dl_status = f"✅ Confident: {dl_pred_class.upper()} ({dl_max_conf*100:.1f}%)"
+        dl_status = f"Confident: {dl_pred_class.upper()} ({dl_max_conf*100:.1f}%)"
         abstain_notice = (
-            f"### ✅ Identified Material: **{dl_pred_class.upper()}** ({dl_max_conf*100:.1f}% confidence)\n"
+            f"### Identified Material: **{dl_pred_class.upper()}** ({dl_max_conf*100:.1f}% confidence)\n"
             f"The neural network detected consistent visual material properties for **{dl_pred_class}**."
         )
 
@@ -132,7 +132,7 @@ for c in ["cardboard", "glass", "metal", "paper", "plastic", "trash"]:
 with gr.Blocks(title="Smart Waste Segregation Assistant") as demo:
     gr.Markdown(
         """
-        # ♻️ Smart Waste Segregation Assistant
+        # Smart Waste Segregation Assistant
         ### Everyday Waste Sorting via Manual Image Descriptors vs. Transfer Learning
         *An educational photo classifier exploring the transition from fixed image descriptors (Color + HOG + LBP) to reusable deep learning representations (MobileNetV2).*
         """
@@ -141,7 +141,7 @@ with gr.Blocks(title="Smart Waste Segregation Assistant") as demo:
     with gr.Row():
         with gr.Column(scale=1):
             input_image = gr.Image(type="pil", label="Upload Waste Photo (or Snap via Webcam)")
-            classify_btn = gr.Button("🔍 Classify Material", variant="primary", size="lg")
+            classify_btn = gr.Button("Classify Material", variant="primary", size="lg")
 
             gr.Examples(
                 examples=sample_images[:6],
@@ -150,14 +150,14 @@ with gr.Blocks(title="Smart Waste Segregation Assistant") as demo:
             )
 
         with gr.Column(scale=1):
-            status_box = gr.Markdown("### ℹ️ Upload an image and click **Classify Material** to begin.")
+            status_box = gr.Markdown("### Upload an image and click **Classify Material** to begin.")
             
             with gr.Tabs():
-                with gr.TabItem("🚀 Deep Learning (MobileNetV2)"):
+                with gr.TabItem("Deep Learning (MobileNetV2)"):
                     dl_top_result = gr.Textbox(label="Transfer Learning Result", interactive=False)
                     dl_chart = gr.Label(num_top_classes=6, label="Learned Feature Probabilities")
 
-                with gr.TabItem("🔬 Applied ML Baseline (SVM + HOG/LBP)"):
+                with gr.TabItem("Applied ML Baseline (SVM + HOG/LBP)"):
                     aml_top_result = gr.Textbox(label="AML Baseline Result", interactive=False)
                     aml_chart = gr.Label(num_top_classes=6, label="Manual Descriptor Probabilities")
 
@@ -170,8 +170,8 @@ with gr.Blocks(title="Smart Waste Segregation Assistant") as demo:
     gr.Markdown(
         """
         ---
-        ### ⚠️ Important Educational Note on Real-World Disposal
-        > **Visual Material Identification $\neq$ Universal Disposal Instructions.**  
+        ### Important Educational Note on Real-World Disposal
+        > **Visual Material Identification != Universal Disposal Instructions.**  
         > 1. **Contamination Rules:** An item made of recyclable plastic or cardboard (like a greasy pizza box or unwashed container) **cannot be recycled** because organic residue ruins entire processing batches.  
         > 2. **Local Municipal Rules:** What is accepted in the blue bin depends strictly on your local waste management facility and municipal sorting technology. Always verify with your local guidelines before disposal.  
         > 3. **The 'Gap' Demonstrated:** Hand-crafted descriptors (HOG & LBP) easily break down on crushed cans, crumpled plastics, and dim lighting. MobileNetV2 uses hierarchical convolutional filters that generalize significantly better.

@@ -175,7 +175,7 @@ def train_dl(epochs_head=10, epochs_finetune=5, batch_size=32):
         json.dump({"val_accuracy": final_acc, "val_macro_f1": final_f1, "report": val_report}, f, indent=2)
 
     print("=" * 60)
-    print(f"🏆 Final MobileNetV2 Validation Results:")
+    print(f"Final MobileNetV2 Validation Results:")
     print(f"   Accuracy: {final_acc * 100:.2f}%")
     print(f"   Macro F1: {final_f1:.4f}")
     print("=" * 60)

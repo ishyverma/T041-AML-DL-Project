@@ -101,11 +101,11 @@ def train_aml():
         json.dump(metrics, f, indent=2)
 
     print("\n" + "=" * 60)
-    print("📊 Validation Comparison (AML Baseline):")
+    print("Validation Comparison (AML Baseline):")
     print(f"SVM:           Accuracy = {svm_acc*100:.2f}%, Macro F1 = {svm_f1:.4f}")
     print(f"Random Forest: Accuracy = {rf_acc*100:.2f}%, Macro F1 = {rf_f1:.4f}")
     print("=" * 60)
-    print(f"✅ Models saved in: {MODELS_DIR.resolve()}\n")
+    print(f"Models saved in: {MODELS_DIR.resolve()}\n")
 
 
 if __name__ == "__main__":

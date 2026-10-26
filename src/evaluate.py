@@ -202,7 +202,7 @@ def run_benchmark():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / "confusion_matrices.png", dpi=150)
     plt.close()
-    print(f"🖼️  Saved: {REPORTS_DIR / 'confusion_matrices.png'}")
+    print(f"Saved: {REPORTS_DIR / 'confusion_matrices.png'}")
 
     # Reliability / Calibration Diagram
     fig, ax = plt.subplots(figsize=(7, 6))
@@ -216,7 +216,7 @@ def run_benchmark():
     plt.tight_layout()
     plt.savefig(REPORTS_DIR / "calibration_curve.png", dpi=150)
     plt.close()
-    print(f"🖼️  Saved: {REPORTS_DIR / 'calibration_curve.png'}")
+    print(f"Saved: {REPORTS_DIR / 'calibration_curve.png'}")
 
     # Qualitative Failure Analysis: Where AML failed but DL succeeded (especially deformed/textured items)
     gap_indices = np.where((aml_svm_preds != y_test) & (dl_preds == y_test))[0]
@@ -237,7 +237,7 @@ def run_benchmark():
             with Image.open(img_path) as img:
                 axes[slot].imshow(img)
             axes[slot].set_title(
-                f"True: {true_label.upper()}\nAML: {pred_aml} (❌) | DL: {pred_dl} (✅)\nDL Conf: {dl_conf[idx]*100:.1f}%",
+                f"True: {true_label.upper()}\nAML: {pred_aml} (Fail) | DL: {pred_dl} (Pass)\nDL Conf: {dl_conf[idx]*100:.1f}%",
                 fontsize=10, fontweight='bold',
                 color="darkred" if pred_aml != true_label else "black"
             )
@@ -247,7 +247,7 @@ def run_benchmark():
         plt.tight_layout()
         plt.savefig(REPORTS_DIR / "failure_cases_aml_vs_dl.png", dpi=150)
         plt.close()
-        print(f"🖼️  Saved: {REPORTS_DIR / 'failure_cases_aml_vs_dl.png'}")
+        print(f"Saved: {REPORTS_DIR / 'failure_cases_aml_vs_dl.png'}")
 
     # Save complete benchmark json
     summary_data = {
@@ -266,7 +266,7 @@ def run_benchmark():
     }
     with open(REPORTS_DIR / "final_test_benchmark.json", "w") as f:
         json.dump(summary_data, f, indent=2)
-    print(f"✅ Full benchmark saved: {REPORTS_DIR / 'final_test_benchmark.json'}\n")
+    print(f"Full benchmark saved: {REPORTS_DIR / 'final_test_benchmark.json'}\n")
 
 
 if __name__ == "__main__":

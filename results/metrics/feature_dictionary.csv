@@ -1,0 +1,4 @@
+Feature_Block,Color_Space,Channels,Bins_Per_Channel,Dimensions,Invariant_To,Vulnerable_To,Bins_Per_Cell,Pattern_Type
+Color Histogram,HSV,"H, S, V",16.0,48,"Scale, translation","Specular reflections, illumination shifts",,
+HOG (Histogram of Gradients),Grayscale,Luminance,,1568,Global illumination gradients,"Severe crumpling, crushing, 3D rotations",8.0,
+LBP (Local Binary Patterns),Grayscale,Luminance,,18,Monotonic gray-scale changes,"Blur, smooth non-textured surfaces",,"Uniform (P=16, R=2)"

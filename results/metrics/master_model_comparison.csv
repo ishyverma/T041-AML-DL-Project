@@ -1,0 +1,4 @@
+Model,Test_Accuracy,Macro_F1,Macro_Precision,Macro_Recall,ECE,Abstain_Rate_tau_0_60,Retained_Accuracy_tau_0_60
+SVM (RBF Kernel),73.28,0.7199,0.7304,0.7133,0.059,38.36,89.27
+Random Forest,74.87,0.7405,0.7804,0.7204,0.3168,83.33,98.41
+MobileNetV2,84.39,0.8268,0.8243,0.8303,0.1038,26.46,94.6

@@ -1,0 +1,7 @@
+Class,Train_Count,Val_Count,Test_Count,Total_Count,Percentage
+cardboard,282,60,61,403,16.0
+glass,351,75,75,501,19.89
+metal,286,62,61,409,16.24
+paper,412,88,89,589,23.38
+plastic,336,72,72,480,19.06
+trash,96,21,20,137,5.44

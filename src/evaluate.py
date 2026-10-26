@@ -34,7 +34,8 @@ from src.feature_extraction import extract_single_image_features
 
 SPLITS_DIR = REPO_ROOT / "splits"
 MODELS_DIR = REPO_ROOT / "models"
-REPORTS_DIR = REPO_ROOT / "reports"
+FIGURES_DIR = REPO_ROOT / "results" / "figures"
+METRICS_DIR = REPO_ROOT / "results" / "metrics"
 CACHE_PATH = REPO_ROOT / "data" / "features_aml.npz"
 
 
@@ -86,7 +87,8 @@ def run_benchmark():
     print("STEP 4: Fair Comparison, Calibration, Failure Analysis & Abstention")
     print("=" * 65)
 
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+    METRICS_DIR.mkdir(parents=True, exist_ok=True)
     with open(SPLITS_DIR / "classes.json", "r") as f:
         meta = json.load(f)
         class_names = meta["class_names"]
@@ -200,9 +202,9 @@ def run_benchmark():
     axes[1].set_xlabel("Predicted Label")
 
     plt.tight_layout()
-    plt.savefig(REPORTS_DIR / "confusion_matrices.png", dpi=150)
+    plt.savefig(FIGURES_DIR / "confusion_matrices.png", dpi=150)
     plt.close()
-    print(f"Saved: {REPORTS_DIR / 'confusion_matrices.png'}")
+    print(f"Saved: {FIGURES_DIR / 'confusion_matrices.png'}")
 
     # Reliability / Calibration Diagram
     fig, ax = plt.subplots(figsize=(7, 6))
@@ -214,9 +216,9 @@ def run_benchmark():
     ax.legend(loc="upper left")
     ax.grid(True, linestyle=":", alpha=0.6)
     plt.tight_layout()
-    plt.savefig(REPORTS_DIR / "calibration_curve.png", dpi=150)
+    plt.savefig(FIGURES_DIR / "calibration_curve.png", dpi=150)
     plt.close()
-    print(f"Saved: {REPORTS_DIR / 'calibration_curve.png'}")
+    print(f"Saved: {FIGURES_DIR / 'calibration_curve.png'}")
 
     # Qualitative Failure Analysis: Where AML failed but DL succeeded (especially deformed/textured items)
     gap_indices = np.where((aml_svm_preds != y_test) & (dl_preds == y_test))[0]
@@ -245,9 +247,9 @@ def run_benchmark():
 
         plt.suptitle("Qualitative Gap Analysis: Why Fixed Descriptors (HOG/LBP) Fail on Deformations", fontsize=14, fontweight='bold', y=0.98)
         plt.tight_layout()
-        plt.savefig(REPORTS_DIR / "failure_cases_aml_vs_dl.png", dpi=150)
+        plt.savefig(FIGURES_DIR / "failure_cases_aml_vs_dl.png", dpi=150)
         plt.close()
-        print(f"Saved: {REPORTS_DIR / 'failure_cases_aml_vs_dl.png'}")
+        print(f"Saved: {FIGURES_DIR / 'failure_cases_aml_vs_dl.png'}")
 
     # Save complete benchmark json
     summary_data = {
@@ -264,9 +266,9 @@ def run_benchmark():
             "dl_retained_accuracy": float(dl_retained_acc)
         }
     }
-    with open(REPORTS_DIR / "final_test_benchmark.json", "w") as f:
+    with open(METRICS_DIR / "final_test_benchmark.json", "w") as f:
         json.dump(summary_data, f, indent=2)
-    print(f"Full benchmark saved: {REPORTS_DIR / 'final_test_benchmark.json'}\n")
+    print(f"Full benchmark saved: {METRICS_DIR / 'final_test_benchmark.json'}\n")
 
 
 if __name__ == "__main__":
